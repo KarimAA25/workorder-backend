@@ -53,6 +53,10 @@ groovydoc {
 tasks.withType(JavaCompile) { options.compilerArgs << "-proc:none" }
 tasks.withType(GroovyCompile) { options.compilerArgs << "-proc:none" }
 
+tasks.withType(GroovyCompile).configureEach {
+    groovyOptions.forkOptions.memoryMaximumSize = '1g'
+}
+
 // NOTE: for dependency types and 'api' definition see: https://docs.gradle.org/current/userguide/java_library_plugin.html
 dependencies {
     // Groovy
