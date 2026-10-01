@@ -6,14 +6,13 @@ COPY . .
 
 RUN chmod +x gradlew
 RUN ./gradlew addRuntime --no-daemon
-RUN ./gradlew load --no-daemon
 
 
 FROM eclipse-temurin:21-jdk
 
 WORKDIR /opt/moqui
 
-COPY --from=build /build/moqui-plus-runtime.war /opt/moqui/moqui-plus-runtime.war
+COPY --from=build /build/moqui-plus-runtime.war .
 
 RUN apt-get update \
     && apt-get install -y unzip \
@@ -25,5 +24,4 @@ RUN apt-get update \
 EXPOSE 10000
 
 ENTRYPOINT ["java", "-cp", ".", "MoquiStart"]
-
 CMD ["conf=conf/MoquiProductionConf.xml", "port=10000"]
