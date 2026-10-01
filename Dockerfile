@@ -5,7 +5,8 @@ WORKDIR /build
 COPY . .
 
 RUN chmod +x gradlew
-RUN ./gradlew load addRuntime --no-daemon
+RUN ./gradlew addRuntime --no-daemon
+RUN ./gradlew load --no-daemon
 
 
 FROM eclipse-temurin:21-jdk
