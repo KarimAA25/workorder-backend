@@ -1,0 +1,29 @@
+<addons default-repository="github">
+
+    <!--
+        CUSTOM PROJECT RUNTIME
+
+        The runtime Git submodule in .gitmodules points to:
+        https://github.com/KarimAA25/workorder-runtime.git
+
+        This myaddons.xml entry provides the same custom runtime
+        as Moqui's Gradle fallback when no runtime directory exists.
+
+        Standard Moqui components remain defined in addons.xml
+        and continue to use the official Moqui repositories.
+    -->
+
+    <repository name="workorder-runtime">
+        <location type="git"
+                  url="https://github.com/KarimAA25/workorder-runtime.git"/>
+        <location type="current"
+                  url="https://github.com/KarimAA25/workorder-runtime/archive/main.zip"/>
+    </repository>
+
+    <runtime name="moqui-runtime"
+             group="KarimAA25"
+             version="4.0.0"
+             branch="main"
+             repository="workorder-runtime"/>
+
+</addons>
