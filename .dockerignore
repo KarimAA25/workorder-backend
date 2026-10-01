@@ -1,0 +1,10 @@
+.git
+.gitignore
+.gradle
+build
+**/build
+**/.gradle
+*.log
+runtime/log
+runtime/txlog
+runtime/sessions

@@ -3,6 +3,7 @@
 build
 .gradle
 /framework/dependencies
+*.log
 
 # Python HTTP security tests
 /framework/test/.venv/
@@ -11,10 +12,13 @@ build
 
 # build generated files
 /moqui*.war
+moqui-plus-runtime.war
 /Save*.zip
 
-# runtime directory (separate repository so ignore directory entirely)
-/runtime
+## runtime directory (separate repository so ignore directory entirely)
+##/runtime
+
+# runtime directory is part of this application repository
 /execwartmp
 /docker/runtime
 /docker/db
