@@ -5,6 +5,11 @@ WORKDIR /build
 COPY . .
 
 RUN chmod +x gradlew
+
+# Make sure the runtime submodule was actually populated
+RUN test -f runtime/conf/MoquiProductionConf.xml
+
+# Build the executable WAR with the runtime
 RUN ./gradlew addRuntime --no-daemon
 
 
@@ -12,14 +17,17 @@ FROM eclipse-temurin:21-jdk
 
 WORKDIR /opt/moqui
 
+# Extract the executable WAR
 COPY --from=build /build/moqui-plus-runtime.war .
-
 RUN apt-get update \
     && apt-get install -y unzip \
     && unzip -q moqui-plus-runtime.war \
     && rm moqui-plus-runtime.war \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Explicitly provide the runtime directory as well
+COPY --from=build /build/runtime /opt/moqui/runtime
 
 EXPOSE 10000
 

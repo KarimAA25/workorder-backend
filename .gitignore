@@ -15,10 +15,8 @@ build
 moqui-plus-runtime.war
 /Save*.zip
 
-## runtime directory (separate repository so ignore directory entirely)
-##/runtime
-
-# runtime directory is part of this application repository
+# runtime directory (separate repository so ignore directory entirely)
+/runtime
 /execwartmp
 /docker/runtime
 /docker/db
