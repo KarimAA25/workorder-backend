@@ -9,7 +9,12 @@ RUN chmod +x gradlew
 # Make sure the runtime submodule was actually populated
 RUN test -f runtime/conf/MoquiProductionConf.xml
 
-# Build the executable WAR with the runtime
+# Get required Moqui components (no-op if already present under runtime/component)
+RUN ./gradlew getComponent -Pcomponent=mantle-udm --no-daemon
+RUN ./gradlew getComponent -Pcomponent=mantle-usl --no-daemon
+RUN ./gradlew getComponent -Pcomponent=SimpleScreens --no-daemon
+
+# Package framework + runtime + components
 RUN ./gradlew addRuntime --no-daemon
 
 
